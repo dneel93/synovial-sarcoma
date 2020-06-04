@@ -1,4 +1,5 @@
-## Install packages and load data
+## Install packages and load data (from the SEER excel file)
+
 install.packages("partykit", dependencies = TRUE)
 install.packages("rpart.plot")
 install.packages("survminer", repo = 'https://mac.R-project.org')
@@ -100,7 +101,7 @@ xerror<-min_xerr+xstd
 cp_opt=max(tfit_all$cptable[tfit_all$cptable[,"xerror"]<xerror,"CP"])
 
 
-tfit= prune(tfit_all, cp=cp) ## prune using cp_opt, can also use min_cp
+tfit= prune(tfit_all, cp=cp_opt) ## prune using cp_opt, can also use min_cp
 rpart.plot(tfit)
 tfit_2 <- as.party(tfit) ## coerce into party object, plot w/ associated KM curves 
 plot(tfit_2)
